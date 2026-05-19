@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>基于影刀RPA+AI Agent的自动化标讯数据处理 - 叶旭宇</title>
+  
+  <script>
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  </script>
+
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <nav>
+    <div class="container nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-text">叶旭宇</span>
+        <div class="logo-dot"></div>
+      </a>
+      <div class="nav-actions">
+        <div class="nav-links">
+          <a href="../../index.html#experience">工作经历</a>
+          <a href="../../index.html#projects">项目经历</a>
+          <a href="../../index.html#certificates">能力证书</a>
+          <a href="../../index.html#portfolio">个人项目</a>
+        </div>
+        <div class="nav-controls">
+          <button class="control-btn theme-toggle" aria-label="Toggle Theme">
+            <i class="fas fa-sun sun-icon"></i>
+            <i class="fas fa-moon moon-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section-padding">
+    <div class="container detail-container">
+      <div class="detail-toc">
+        <div class="toc-title">目录</div>
+        <a href="#design-goal" class="toc-item active">设计目标</a>
+        <a href="#results" class="toc-item">项目成效</a>
+        <a href="#architecture" class="toc-item">逻辑架构</a>
+        <a href="#process" class="toc-item">过程展示</a>
+        <a href="#problems" class="toc-item">问题与解决方案</a>
+      </div>
+      <div class="card project-detail-card">
+        <div class="detail-header">
+          <h2>基于影刀RPA+AI Agent的自动化标讯数据处理</h2>
+          <div class="detail-meta"></div>
+        </div>
+        
+        <div class="project-detail-desc">
+          <h3 id="design-goal">设计目标</h3>
+          <p>1-每日自动从指定标讯网站中，获取招标公告信息，结合内部业务方案进行匹配，进行项目信息卡片推送；</p>
+          <p>2-每日自动从指定标讯网站中，获取中标公告信息，并归档各项目的用户信息与参与公司信息，形成历史外部市场参与地图；</p>
+          
+          <h3 id="results">项目成效</h3>
+          <p>1-解决政采网反爬机制，以及非标准结构化的招标公告与中标公告的内容解析，形成结构化数据适配后续运营工作；</p>
+          <p>2-提升数据更新频率，从以往按周/月手动更新提升至按天更新；</p>
+          <p>3-解决庞大的历史数据的抓取与分析的问题；</p>
+          <p>4-通过Ai大模型替代人工进行标讯内容核实，每周节省4h人工核实工作时间。</p>
+          
+          <h3 id="architecture">逻辑架构</h3>
+          <p>整体逻辑如下，由影刀RPA负责进行政采网招标公告与中标公告信息的检索，同时提取关键信息，架构化为json文件，写入阿里云的mysql中，再由Agent进行数据清晰与内容分析，同时RAG及CRM的部分数据为Agent提供数据判断依据</p>
+          <p><img src="../../assets/images/RPA-2.jpg" alt="逻辑架构图" class="detail-image"></p>
+          
+          <h3 id="process">过程展示</h3>
+          <p>1-通过影刀RPA进行全量政采招标公告信息采集；</p>
+          <div class="detail-image-wrapper"><img src="../../assets/images/RPA-1.jpg" alt="信息采集1" class="detail-image-sm"><i class="fas fa-search-plus detail-zoom-icon"></i></div>
+          <div class="detail-image-wrapper"><img src="../../assets/images/RPA-3.gif" alt="信息采集2" class="detail-image-sm"><i class="fas fa-search-plus detail-zoom-icon"></i></div>
+          <p>2-Agent通过数据库读取获取项目公告信息，并与RAG中业务方案进行匹配，判断业务可为</p>
+          <div class="detail-image-wrapper"><img src="../../assets/images/RPA-4.jpg" alt="方案匹配" class="detail-image-sm" style="object-fit: contain; background: #f1f5f9;"><i class="fas fa-search-plus detail-zoom-icon"></i></div>
+          <div class="detail-image-wrapper"><img src="../../assets/images/RPA-6.jpg" alt="方案匹配2" class="detail-image-sm" style="object-fit: contain; background: #f1f5f9;"><i class="fas fa-search-plus detail-zoom-icon"></i></div>
+          <p>3-Agent将项目信息与业务方案进行整合，形成markdown文件形式，转换为项目卡片进行推送</p>
+          <div class="detail-image-wrapper"><img src="../../assets/images/RPA-5.jpg" alt="卡片推送" class="detail-image-sm" style="object-fit: contain; background: #f1f5f9;"><i class="fas fa-search-plus detail-zoom-icon"></i></div>
+          <div class="detail-image-wrapper"><img src="../../assets/images/RPA-7.jpg" alt="卡片推送2" class="detail-image-sm" style="object-fit: contain; background: #f1f5f9;"><i class="fas fa-search-plus detail-zoom-icon"></i></div>
+
+          <h3 id="problems">问题与解决方案</h3>
+          <h4>问题一：</h4>
+          <p>历史全量数据虽然只需要抓一次，但由于数据量较大，耗费时间较长，且网页访问频繁，容易被政采网站后台拦截访问，导致网页不加载无反应，RPA自动化异常退出，再次开启工作流后，数据重新抓取没有记录；</p>
+          <h4>解决方案：</h4>
+          <p>通过Excel作为任务todo-list，与任务进度的记录媒介，将所有日期与处理状态进行写入</p>
+          <div class="detail-image-wrapper"><img src="../../assets/images/RPA-9.jpg" alt="Excel配置1" class="detail-image-sm" style="object-fit: contain; background: #f1f5f9;"><i class="fas fa-search-plus detail-zoom-icon"></i></div>
+          <div class="detail-image-wrapper"><img src="../../assets/images/RPA-10.jpg" alt="Excel配置2" class="detail-image-sm" style="object-fit: contain; background: #f1f5f9;"><i class="fas fa-search-plus detail-zoom-icon"></i></div>
+          <p>并通过公式提取尚未处理的最早的日期，作为RPA处理流程中的日期筛选入参，并在完成某日的全部项目摘取录入后，将对应的日期的处理状态写√</p>
+          <div class="detail-image-wrapper" style="width: 100%;"><img src="../../assets/images/RPA-11.gif" alt="公式配置" class="detail-image-sm" style="width: 100%; object-fit: contain; background: #f1f5f9;"><i class="fas fa-search-plus detail-zoom-icon"></i></div>
+          <p>同时考虑有可能在某个日期项目中途出现网页无法访问的情况，对每次翻页的记录进行累计并写入，以便在后续中途开始时，对检索结果直接进行页面跳转</p>
+          <div class="detail-image-wrapper"><img src="../../assets/images/RPA-12.jpg" alt="翻页记录" class="detail-image-sm" style="object-fit: contain; background: #f1f5f9;"><i class="fas fa-search-plus detail-zoom-icon"></i></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026 叶旭宇. All rights reserved.</footer>
+
+  <div id="imageModal" class="modal">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="modalImage">
+  </div>
+
+  <script src="../../assets/js/main.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('.project-detail-desc h3[id]');
+      const tocItems = document.querySelectorAll('.toc-item');
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      tocItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === '#' + current) {
+          item.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
