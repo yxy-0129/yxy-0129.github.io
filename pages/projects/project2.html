@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Agent辅助运营项目 - 叶旭宇</title>
+  
+  <script>
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  </script>
+
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <nav>
+    <div class="container nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-text">叶旭宇</span>
+        <div class="logo-dot"></div>
+      </a>
+      <div class="nav-actions">
+        <div class="nav-links">
+          <a href="../../index.html#experience">工作经历</a>
+          <a href="../../index.html#projects">项目经历</a>
+          <a href="../../index.html#certificates">能力证书</a>
+          <a href="../../index.html#portfolio">个人项目</a>
+        </div>
+        <div class="nav-controls">
+          <button class="control-btn theme-toggle" aria-label="Toggle Theme">
+            <i class="fas fa-sun sun-icon"></i>
+            <i class="fas fa-moon moon-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section-padding">
+    <div class="container detail-container">
+      <div class="detail-toc">
+        <div class="toc-title">目录</div>
+        <a href="#intro" class="toc-item active">项目介绍</a>
+        <a href="#content" class="toc-item">主要业务</a>
+      </div>
+      <div class="card project-detail-card">
+        <div class="detail-header">
+          <h2>AI-Agent辅助运营项目</h2>
+          <div class="detail-meta">
+            <span class="detail-role">项目负责人</span>
+            <span class="detail-date">2026-01</span>
+          </div>
+        </div>
+        
+        <div class="project-detail-desc">
+          <h3 id="intro">项目介绍</h3>
+          <p>从0-1完成部门内部AI-Agent的测试与部署工作，RAG知识库搭建，运营需求分析与工作流程拆解。</p>
+          <p>对所负责的行业日常运营工作进行数据结构化设计，流程设计，RPA与AI-Agent的配合架构设计，部署使用。</p>
+          
+          <h3 id="content">主要业务</h3>
+          <p>1、政采网上商城各品类产品与竞品点单情况收集，分析与BI看板呈现，提升竞争情况实时反馈。</p>
+          <p>2、外部标讯数据采集，归档，清洗，结构化拆分与推送，大幅提升每日数据收集与分类筛选存储的效率。</p>
+          <p>3、CRM信息对接，行业客用户分析框架搭建，产品分析框架搭建，通过技能固化，输出数据图表与分析结果，提升月度数据复盘效率。</p>
+          <p>4、对内部与外部交易信息进行交叉分析，为客用户拜访汇报，提供较为详尽的数据分析，如客户侧：内部历史交易情况、产品构成、行业属性、外部参与的项目信息、涉及行业、合作品牌；用户侧：内部历史配合项目记录、子系统构成、外部建设项目信息、合作单位、所用品牌。</p>
+          
+          <h3>项目成效</h3>
+          <p>通过不断优化prompt与数据处理规则，对所负责行业的内外部数据信息的自动化采集与分析，及时对项目参与情况、行业建设风向、客户交易产品结构、用户业务地图等方面的问题进行预警，并通过月度复盘传递给全省各分公司总经理，同时进行改进跟踪。</p>
+          
+          <p class="link-hint"><i class="fas fa-info-circle"></i> 与RPA协同优化详情于个人项目板块</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026 叶旭宇. All rights reserved.</footer>
+
+  <div id="imageModal" class="modal">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="modalImage">
+  </div>
+
+  <script src="../../assets/js/main.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('.project-detail-desc h3[id]');
+      const tocItems = document.querySelectorAll('.toc-item');
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      tocItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === '#' + current) {
+          item.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

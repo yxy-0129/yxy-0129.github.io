@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>业务中心销售AI智能助理项目 - 叶旭宇</title>
+  
+  <script>
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  </script>
+
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <nav>
+    <div class="container nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-text">叶旭宇</span>
+        <div class="logo-dot"></div>
+      </a>
+      <div class="nav-actions">
+        <div class="nav-links">
+          <a href="../../index.html#experience">工作经历</a>
+          <a href="../../index.html#projects">项目经历</a>
+          <a href="../../index.html#certificates">能力证书</a>
+          <a href="../../index.html#portfolio">个人项目</a>
+        </div>
+        <div class="nav-controls">
+          <button class="control-btn theme-toggle" aria-label="Toggle Theme">
+            <i class="fas fa-sun sun-icon"></i>
+            <i class="fas fa-moon moon-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section-padding">
+    <div class="container detail-container">
+      <div class="detail-toc">
+        <div class="toc-title">目录</div>
+        <a href="#goal" class="toc-item active">项目目标</a>
+        <a href="#content" class="toc-item">主要内容</a>
+      </div>
+      <div class="card project-detail-card">
+        <div class="detail-header">
+          <h2>业务中心销售AI智能助理项目</h2>
+          <div class="detail-meta">
+            <span class="detail-role">方案架构设计</span>
+            <span class="detail-date">2026-03</span>
+          </div>
+        </div>
+        
+        <div class="project-detail-desc">
+          <h3 id="goal">项目目标</h3>
+          <p>由部门内部Agent经验出发，负责业务中心销售客户AI智能助理的场景调研、需求分析、数据分析、逻辑设计、功能设计。</p>
+          <p>旨在整合内外部数据，为销售提供客户全景画像与行动建议的智能助理。</p>
+          <div class="detail-image-wrapper" style="width: 100%;"><img src="../../assets/images/Agent-1.jpg" alt="项目架构" class="detail-image-sm" style="width: 100%; object-fit: contain; background: #f1f5f9;"><i class="fas fa-search-plus detail-zoom-icon"></i></div>
+          
+          <h3 id="content">主要内容</h3>
+          <p>1、设计对接外部信息（标讯信息，RCC工建信息），内部数据（CRM，DPM，软件订单管理系统），内部静态数据（方案/产品RAG库）。</p>
+          <p>2、调研数据关注点，并设计数据分析需求：客户历史项目画像、客户历史交易/合作画像、休眠客户激活潜力、新拓客用户信息分析。</p>
+          <p>3、对主要交互场景：客户、用户拜访准备，进行基础信息的输出设计，优化prompt以提升输出质量，并支持多层级分析，用户多轮交互数据下钻分析。</p>
+          
+          <h3>项目成效</h3>
+          <p><strong>潜客筛选：</strong>提升单个销售组高潜客户筛选效率50%，外部项目检索筛选效率提升30%。</p>
+          <p><strong>拜访准备：</strong>快速汇聚内外部信息，结合拜访对象情况，整理销售话术与推荐方案，提升业务检索与准备效率50%，触达有效率提升30%。</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026 叶旭宇. All rights reserved.</footer>
+
+  <div id="imageModal" class="modal">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="modalImage">
+  </div>
+
+  <script src="../../assets/js/main.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('.project-detail-desc h3[id]');
+      const tocItems = document.querySelectorAll('.toc-item');
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      tocItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === '#' + current) {
+          item.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

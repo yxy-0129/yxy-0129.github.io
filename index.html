@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>叶旭宇's Homepage</title>
+  
+  <script>
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  </script>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <nav>
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        <span class="logo-text">叶旭宇</span>
+        <div class="logo-dot"></div>
+      </a>
+      
+      <div class="nav-actions">
+        <div class="nav-links">
+          <a href="#experience">工作经历</a>
+          <a href="#projects">项目经历</a>
+          <a href="#certificates">能力证书</a>
+          <a href="#portfolio">个人项目</a>
+        </div>
+        
+        <div class="nav-controls">
+          <button class="control-btn theme-toggle" aria-label="Toggle Theme">
+            <i class="fas fa-sun sun-icon"></i>
+            <i class="fas fa-moon moon-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section id="intro" class="intro">
+    <div class="bg-decoration"></div>
+    <div class="container intro-container">
+      <div class="intro-left">
+        <div class="avatar-container">
+          <img src="assets/images/Avatar.jpg" alt="头像" class="avatar">
+          <div class="avatar-glow"></div>
+        </div>
+        <h1 class="gradient-text">HELLO，我是 叶旭宇</h1>
+        <div class="intro-subtitle">
+          <p><span class="info-label">出生年月</span><span class="info-value">1996-01</span></p>
+          <p><span class="info-label">联系电话</span><span class="info-value">13925013789</span></p>
+          <p><span class="info-label">邮箱地址</span><span class="info-value">y-fengmu@hotmail.com</span></p>
+          <p><span class="info-label">教育经历</span><span class="info-value edu-value">广州大学 2014-2018<br>电子信息科学与技术 · 本科</span></p>
+        </div>
+        <div class="intro-contact-links" aria-label="Social Links"></div>
+      </div>
+      <div class="intro-right">
+        <h3 class="family-title">家庭成员</h3>
+        <div class="family-members" aria-label="Family Members"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="section-padding">
+    <div class="container">
+      <h2>工作经历</h2>
+      <div class="timeline-container"></div>
+    </div>
+  </section>
+
+  <section id="projects" class="section-padding">
+    <div class="container">
+      <h2>项目经历</h2>
+      <div class="projects-grid"></div>
+    </div>
+  </section>
+
+  <section id="certificates" class="section-padding">
+    <div class="container">
+      <h2>能力证书</h2>
+      <div class="certificates-grid"></div>
+    </div>
+  </section>
+
+  <section id="portfolio" class="section-padding">
+    <div class="container">
+      <h2>个人项目</h2>
+      <div class="portfolio-grid"></div>
+    </div>
+  </section>
+
+  <footer>© 2026 叶旭宇. All rights reserved.</footer>
+
+  <div id="imageModal" class="modal">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="modalImage">
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>基于YOLO图像识别+AI Agent的猫咪活动识别 - 叶旭宇</title>
+  
+  <script>
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  </script>
+
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <nav>
+    <div class="container nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-text">叶旭宇</span>
+        <div class="logo-dot"></div>
+      </a>
+      <div class="nav-actions">
+        <div class="nav-links">
+          <a href="../../index.html#experience">工作经历</a>
+          <a href="../../index.html#projects">项目经历</a>
+          <a href="../../index.html#certificates">能力证书</a>
+          <a href="../../index.html#portfolio">个人项目</a>
+        </div>
+        <div class="nav-controls">
+          <button class="control-btn theme-toggle" aria-label="Toggle Theme">
+            <i class="fas fa-sun sun-icon"></i>
+            <i class="fas fa-moon moon-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section-padding">
+    <div class="container detail-container">
+      <div class="detail-toc">
+        <div class="toc-title">目录</div>
+        <a href="#design-goal" class="toc-item active">设计目标</a>
+        <a href="#process" class="toc-item">过程展示</a>
+      </div>
+      <div class="card project-detail-card">
+        <div class="detail-header">
+          <h2>基于YOLO图像识别+AI Agent的猫咪活动识别</h2>
+          <div class="detail-meta"></div>
+        </div>
+        
+        <div class="project-detail-desc">
+          <h3 id="design-goal">设计目标</h3>
+          <p>1-通过YOLO算法识别猫咪，并进行抓拍，再生成猫咪活动事件推送或一天总结；</p>
+          
+          <h3 id="process">过程展示</h3>
+          <p>1-对家里两只猫猫进行多角度，多场景的图片收集，虽然理论上每个目标200张以上的照片作为训练集才能出一个较优的模型，但是考虑本身环境稳定不变，家里没有其他目标，所以仅仅只用了45张图片作为第一版的训练素材；</p>
+          <div class="detail-image-wrapper" style="width: 100%;"><img src="../../assets/images/YOLO-4.jpg" alt="图片收集" class="detail-image-sm" style="width: 100%; object-fit: contain; background: #f1f5f9;"><i class="fas fa-search-plus detail-zoom-icon"></i></div>
+          <p>2-通过labelImg进行图像的目标标签绘制，并在电脑上进行第一版的训练；</p>
+          <div class="detail-image-wrapper"><img src="../../assets/images/YOLO-2.jpg" alt="标签绘制1" class="detail-image-sm" style="object-fit: contain; background: #f1f5f9;"><i class="fas fa-search-plus detail-zoom-icon"></i></div>
+          <div class="detail-image-wrapper"><img src="../../assets/images/YOLO-3.jpg" alt="标签绘制2" class="detail-image-sm" style="object-fit: contain; background: #f1f5f9;"><i class="fas fa-search-plus detail-zoom-icon"></i></div>
+          <p>3-由于数据源较少，开启增强训练，并调整训练轮数避免过拟合的情况；</p>
+          <div class="detail-image-wrapper" style="width: 100%;"><img src="../../assets/images/YOLO-6.jpg" alt="增强训练" class="detail-image-sm" style="width: 100%; object-fit: contain; background: #f1f5f9;"><i class="fas fa-search-plus detail-zoom-icon"></i></div>
+          <p>4-虚拟机接入外置USB摄像头，并部署识别程序，目标出现联动图片抓拍，为防止图片过多，目标出现后不消失，设定抓拍间隔为20s；</p>
+          <div class="detail-image-wrapper" style="width: 100%;"><img src="../../assets/images/YOLO-5.gif" alt="摄像头部署" class="detail-image-sm" style="width: 100%; object-fit: contain; background: #f1f5f9;"><i class="fas fa-search-plus detail-zoom-icon"></i></div>
+          <p>5-Agent定时到指定路径下取图片，并对图片内容进行解读，或是对猫咪的一天进行漫画生成，进行推送；</p>
+          <div class="detail-image-wrapper"><img src="../../assets/images/YOLO-7.jpg" alt="推送1" class="detail-image-sm" style="object-fit: contain; background: #f1f5f9;"><i class="fas fa-search-plus detail-zoom-icon"></i></div>
+          <div class="detail-image-wrapper"><img src="../../assets/images/YOLO-8.jpg" alt="推送2" class="detail-image-sm" style="object-fit: contain; background: #f1f5f9;"><i class="fas fa-search-plus detail-zoom-icon"></i></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026 叶旭宇. All rights reserved.</footer>
+
+  <div id="imageModal" class="modal">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="modalImage">
+  </div>
+
+  <script src="../../assets/js/main.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('.project-detail-desc h3[id]');
+      const tocItems = document.querySelectorAll('.toc-item');
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      tocItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === '#' + current) {
+          item.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
